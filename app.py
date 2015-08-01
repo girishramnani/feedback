@@ -37,19 +37,22 @@ class Feedback(db.Model):
 
 @app.route('/',methods=['GET', 'POST'])
 def index():
+
+
+
+    return send_from_directory('templates', "index.html")
+
+
+@app.route('/post',methods=['POST'])
+def post():
+
     if request.method=="POST":
         score = request.form['q2']
         some_thing_else = request.form['q4']
         disliked = request.form['q1']
         Feedback.create(score=score,feedback=disliked,newThingToLearn=some_thing_else)
 
-
         return "Your response has been recorded "
-    return send_from_directory('templates', "index.html")
-
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0")
