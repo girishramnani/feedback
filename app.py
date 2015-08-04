@@ -35,9 +35,8 @@ class Feedback(db.Model):
     newThingToLearn = TextField(default="None")
     date = DateField(default=datetime.now())
 
-
-@app.route('/',methods=['GET', 'POST'])
-def index():
+@app.route('/post',methods=['POST'])
+def post():
     if request.method=="POST":
         score = request.form['q2']
         some_thing_else = request.form['q4']
@@ -46,6 +45,11 @@ def index():
 
 
         return "Your response has been recorded "
+    return "not supported"
+
+@app.route('/',methods=['GET', 'POST'])
+def index():
+
     return send_from_directory('templates', "index.html")
 
 
