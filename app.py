@@ -28,60 +28,36 @@ db = Database(app)
 
 
 #the model
-<<<<<<< HEAD
 
-=======
+
+
 from datetime import datetime
->>>>>>> d8e315a59d4dd4f9feb6e1074e29fcd8c7ada589
+
 class Feedback(db.Model):
     score = IntegerField(null=False)
     feedback = TextField(default="None")
     newThingToLearn = TextField(default="None")
-<<<<<<< HEAD
+    date = DateField(default=datetime.now())
+
 
 
 @app.route('/',methods=['GET', 'POST'])
 def index():
-
-
-
     return send_from_directory('templates', "index.html")
 
 
-@app.route('/post',methods=['POST'])
-def post():
-
-=======
-    date = DateField(default=datetime.now())
 
 @app.route('/post',methods=['POST'])
 def post():
->>>>>>> d8e315a59d4dd4f9feb6e1074e29fcd8c7ada589
+
     if request.method=="POST":
         score = request.form['q2']
         some_thing_else = request.form['q4']
         disliked = request.form['q1']
+	
         Feedback.create(score=score,feedback=disliked,newThingToLearn=some_thing_else)
-
-<<<<<<< HEAD
         return "Your response has been recorded "
 
 if __name__ == '__main__':
-=======
-
-        return "Your response has been recorded "
-    return "not supported"
-
-@app.route('/',methods=['GET', 'POST'])
-def index():
-
-    return send_from_directory('templates', "index.html")
-
-
-
-
-
-if __name__ == '__main__':
-    Feedback.create_table(fail_silently=True)
->>>>>>> d8e315a59d4dd4f9feb6e1074e29fcd8c7ada589
+    
     app.run(debug=True,host="0.0.0.0")
